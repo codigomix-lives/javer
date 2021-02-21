@@ -2,3 +2,6 @@
 /out/
 /.idea/
 /bin/
+.classpath
+.project
+.gitignore
