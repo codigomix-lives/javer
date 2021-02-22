@@ -1,4 +1,4 @@
-package br.com.codigomix.javer;
+package br.com.codigomix.javer.util;
 
 import java.io.File;
 import java.io.FileFilter;
