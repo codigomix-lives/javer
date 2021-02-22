@@ -19,7 +19,7 @@ public abstract class JaverComponent {
 			byte[] readBytes;
 			readBytes = Files.readAllBytes(path);
 			int major = readBytes[6] + readBytes[7];
-			return JavaVersionEnum.getJavaVersionEnum(major);
+			return JavaVersionEnum.getByMajorVersion(major);
 		} catch (IOException e) {
 			throw new JaverException("Can't read the file", e);
 		}
