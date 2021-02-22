@@ -1,3 +1,7 @@
 /javer.iml
 /out/
 /.idea/
+/bin/
+.classpath
+.project
+.gitignore

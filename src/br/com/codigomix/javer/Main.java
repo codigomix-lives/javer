@@ -1,22 +1,35 @@
 package br.com.codigomix.javer;
 
-import java.io.File;
-import java.io.FileFilter;
+import java.nio.file.Path;
 
 public class Main {
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 
-        if (args.length == 0){
-            System.out.println("Favor informar a classe, biblioteca ou diretorio");
-            System.exit(1);
-        }
+		if (args.length == 0) {
+			System.out.println("Favor informar a classe, biblioteca ou diretorio");
+			System.exit(1);
+		}
 
-        String path = args[0];
+		Path cmdLinePath = Path.of(args[0]);
 
-        File file = new File(path);
+		JaverComponent jc = null;
 
-        JaverService.printJavaVersion(file);
+		if (JaverComponents.isJaverClassFile(cmdLinePath)) {
+			jc = JaverClassFile.of(cmdLinePath);
 
-    }
+		} else if (JaverComponents.isJaverDirectory(cmdLinePath)) {
+			jc = JaverJarFile.of(cmdLinePath);
+
+		} else if (JaverComponents.isJaverJarFile(cmdLinePath)) {
+			jc = JaverJarFile.of(cmdLinePath);
+
+		} else {
+			System.out.println("Invalid path");
+			System.exit(1);
+		}
+
+		jc.printVersion();
+
+	}
 }
