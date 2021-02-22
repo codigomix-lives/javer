@@ -1,7 +1,9 @@
 package br.com.codigomix.javer;
 
+import br.com.codigomix.javer.error.JaverException;
 import br.com.codigomix.javer.model.JaverClassFile;
 import br.com.codigomix.javer.model.JaverComponent;
+import br.com.codigomix.javer.model.JaverDirectory;
 import br.com.codigomix.javer.model.JaverJarFile;
 import br.com.codigomix.javer.util.JaverComponents;
 
@@ -22,19 +24,21 @@ public class Main {
 
 		if (JaverComponents.isJaverClassFile(cmdLinePath)) {
 			jc = JaverClassFile.of(cmdLinePath);
-
 		} else if (JaverComponents.isJaverDirectory(cmdLinePath)) {
-			jc = JaverJarFile.of(cmdLinePath);
-
+			jc = JaverDirectory.of(cmdLinePath);
 		} else if (JaverComponents.isJaverJarFile(cmdLinePath)) {
 			jc = JaverJarFile.of(cmdLinePath);
-
 		} else {
 			System.out.println("Invalid path");
 			System.exit(1);
 		}
 
-		jc.printVersion();
+		try {
+			jc.printVersion();
+		} catch (JaverException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
 
 	}
 }

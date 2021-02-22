@@ -1,5 +1,6 @@
 package br.com.codigomix.javer.model;
 
+import br.com.codigomix.javer.error.JaverException;
 import br.com.codigomix.javer.util.JaverComponents;
 
 import java.io.IOException;
@@ -23,16 +24,20 @@ public class JaverDirectory extends JaverComponent {
 	}
 
 	@Override
-	public void printVersion() {
+	public void printVersion() throws JaverException {
 
 		try (DirectoryStream<Path> stream = Files.newDirectoryStream(path)) {
 			for (Path p : stream) {
 				if (JaverComponents.isJaverClassFile(p)) {
 					JaverClassFile.of(p).printVersion();
+				} else if (JaverComponents.isJaverJarFile(p)){
+					JaverJarFile.of(p).printVersion();
 				}
+				// TODO else is just ignoring the file type. A filter in query would be nice!
+				// @see ExtensionFilter from old implementation
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new JaverException("Error reading directory", e);
 		}
 	}
 }

@@ -1,5 +1,6 @@
 package br.com.codigomix.javer.model;
 
+import br.com.codigomix.javer.error.JaverException;
 import br.com.codigomix.javer.util.JaverComponents;
 
 import java.nio.file.Path;
@@ -18,7 +19,7 @@ public class JaverClassFile extends JaverComponent {
 		this.path = path;
 	}
 
-	public void printVersion() {
+	public void printVersion() throws JaverException {
 		super.printVersion(path);
 	}
 }

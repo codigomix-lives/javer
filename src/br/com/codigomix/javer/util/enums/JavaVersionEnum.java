@@ -2,6 +2,7 @@ package br.com.codigomix.javer.util.enums;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public enum JavaVersionEnum {
 
@@ -21,7 +22,8 @@ public enum JavaVersionEnum {
     JAVA_SE_14(58, "Java SE 14"),
     JAVA_SE_15(59, "Java SE 15"),
     JAVA_SE_16(60, "Java SE 16"),
-    JAVA_SE_17(61, "Java SE 17");
+    JAVA_SE_17(61, "Java SE 17"),
+    JAVA_SE_UNDEFINED(0, "UNDEFINED");
 
     private String description;
     private int majorVersion;
@@ -38,11 +40,17 @@ public enum JavaVersionEnum {
         this.description = description;
     }
 
-    public static JavaVersionEnum getJavaVersion(Integer majorVersion){
-        return versions.get(majorVersion);
+    public static JavaVersionEnum getJavaVersionEnum(Integer majorVersion){
+
+        JavaVersionEnum javaVersionEnum = versions.get(majorVersion);
+        if (Objects.isNull(javaVersionEnum)){
+            return JAVA_SE_UNDEFINED;
+        }
+
+        return javaVersionEnum;
     }
 
-    public String getJavaVersion(JavaVersionEnum javaVersionEnum){
+    public String getJavaVersionEnum(JavaVersionEnum javaVersionEnum){
         return javaVersionEnum.description;
     }
 

@@ -1,6 +1,8 @@
 package br.com.codigomix.javer.model;
 
+import br.com.codigomix.javer.error.JaverException;
 import br.com.codigomix.javer.util.JaverComponents;
+import br.com.codigomix.javer.util.enums.JavaVersionEnum;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -31,7 +33,7 @@ public class JaverJarFile extends JaverComponent {
 	}
 
 	@Override
-	public void printVersion() {
+	public void printVersion() throws JaverException {
 
 		try {
 			ZipInputStream zipInputStream = new ZipInputStream(new FileInputStream(path.toFile()));
@@ -47,15 +49,20 @@ public class JaverJarFile extends JaverComponent {
 
 					FileOutputStream fos = new FileOutputStream(tmpOutput);
 
-					byte[] buffer = new byte[1024];
-					int len;
-					while ((len = zipInputStream.read(buffer)) > 0) {
+					byte[] buffer = new byte[8];
+					int len = zipInputStream.read(buffer);
+					if (len > 0){
 						fos.write(buffer, 0, len);
 					}
 
 					fos.close();
 
-					printVersion(tmpOutput.toPath());
+					JavaVersionEnum version = super.getMajorVersion(tmpOutput.toPath());
+					System.out.println(path.getFileName().toString());
+					System.out.println(" Compiled version: " + version.getDescription());
+
+					// TODO: deep check. We can check all files instead of just the first .class
+					break;
 
 				}
 
@@ -65,7 +72,7 @@ public class JaverJarFile extends JaverComponent {
 			zipInputStream.close();
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new JaverException("Can't read the directory", e);
 		}
 
 	}
