@@ -1,4 +1,6 @@
-package br.com.codigomix.javer;
+package br.com.codigomix.javer.model;
+
+import br.com.codigomix.javer.util.enums.JavaVersionEnum;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -8,7 +10,7 @@ public abstract class JaverComponent {
 	
 	/**
 	 * This is a default method for files, to be used by subclasses.
-	 * @param path
+	 * @param path Path object to check the version
 	 */
 	public void printVersion(Path path) {
 		
@@ -19,16 +21,12 @@ public abstract class JaverComponent {
 			byte[] readBytes;
 			readBytes = Files.readAllBytes(path);
 			int major = readBytes[6] + readBytes[7];
-			System.out.println(JavaSeMap.javaSeVersions.getOrDefault(major, inferJavaSeVersion(major)));
+			System.out.println(JavaVersionEnum.getJavaVersion(major).getDescription());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	private String inferJavaSeVersion(int major) {
-		return "Java SE " + (major - 44);
-	}
-	
 	public abstract void printVersion();
 
 }

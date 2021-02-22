@@ -1,4 +1,6 @@
-package br.com.codigomix.javer;
+package br.com.codigomix.javer.model;
+
+import br.com.codigomix.javer.util.JaverComponents;
 
 import java.io.IOException;
 import java.nio.file.DirectoryStream;

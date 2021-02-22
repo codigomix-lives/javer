@@ -1,5 +1,10 @@
 package br.com.codigomix.javer;
 
+import br.com.codigomix.javer.model.JaverClassFile;
+import br.com.codigomix.javer.model.JaverComponent;
+import br.com.codigomix.javer.model.JaverJarFile;
+import br.com.codigomix.javer.util.JaverComponents;
+
 import java.nio.file.Path;
 
 public class Main {
