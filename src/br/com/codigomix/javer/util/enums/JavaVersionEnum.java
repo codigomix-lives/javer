@@ -30,8 +30,7 @@ public enum JavaVersionEnum {
 
 	public static JavaVersionEnum getByMajorVersion(Integer majorVersion) {
 
-		JavaVersionEnum javaVersionEnum = versions.get(majorVersion);
-		return Objects.isNull(javaVersionEnum) ? JAVA_SE_UNDEFINED : javaVersionEnum;
+		return versions.getOrDefault(majorVersion, JAVA_SE_UNDEFINED);
 	}
 
 	public int getMajorVersion() {
