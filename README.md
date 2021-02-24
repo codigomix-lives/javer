@@ -9,7 +9,8 @@ usando somente os bytes de `major version`.
 
 Como usar:
 
-java -jar javer.jar <path>
+`java -jar javer.jar <path>`  
+ex: `java -jar javer.jar javer.jar`
 
 path pode ser o caminho do completo do arquivo, ou o caminho completo da biblioteca .jar ou uma pasta contendo .class e/ou .jar.
 
@@ -36,6 +37,12 @@ Parte 3: https://www.youtube.com/watch?v=gb0aPWwHTmU
 ### Licença
 
 Verifique a licença em [LICENSE](./LICENSE)
+
+### Código de Conduta
+
+Veja o código de conduta em [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)
+
+
 
 
 
