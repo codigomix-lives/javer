@@ -2,8 +2,11 @@ package br.com.codigomix.javer.util.enums;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
-
+/**
+ * TODO
+ * @author primosantini
+ *
+ */
 public enum JavaVersionEnum {
 
 	JAVA_SE_1_1(45, "JDK 1.1"), JAVA_SE_1_2(46, "JDK 1.2"), JAVA_SE_1_3(47, "JDK 1.3"), JAVA_SE_1_4(48, "JDK 1.4"),
