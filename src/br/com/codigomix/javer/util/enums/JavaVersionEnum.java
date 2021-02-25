@@ -2,7 +2,6 @@ package br.com.codigomix.javer.util.enums;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 /**
  * TODO
  * @author primosantini
